@@ -169,7 +169,7 @@ namespace GumWars.Core
             }
 
             bool gainedCapacity = MyRandom.SomethingHappened(Settings.RANDOM_FORTUNE_GAIN_CAPACITY_PROBABILITY);
-            if (gainedCapacity)
+            if (gainedCapacity && this.Player.CarryingCapacity < Settings.MAX_CAPACITY)
             {
                 int newCapacity = MyRandom.Random(this.Player.CarryingCapacity + 250, this.Player.CarryingCapacity + 1000);
                 this.CurrentMessage += "You now have " + newCapacity + " carrying capacity!";

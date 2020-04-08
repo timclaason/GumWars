@@ -8,7 +8,7 @@ namespace GumWars.Core
 {
     public class Settings
     {
-        public static int DEFAULT_CARRYING_CAPACITY = 700;
+        public static int DEFAULT_CARRYING_CAPACITY = 500;
 
         public static int DEFAULT_MONEY = 1500;
 
@@ -35,6 +35,8 @@ namespace GumWars.Core
         public static int RANDOM_FORTUNE_LOSE_MONEY_PROBABILITY = 14;
 
         public static int RANDOM_FORTUNE_LOSE_GUM_PROBABILITY = 13;
+
+        public static int MAX_CAPACITY = 5000;
 
         public static string[] CITIES = { "Altoona", "Augusta", "Eau Claire", "Elk Mound", "Fall Creek", "Osseo" };
 

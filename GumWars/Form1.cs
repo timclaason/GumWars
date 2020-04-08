@@ -21,8 +21,19 @@ namespace GumWars
             initialize();
             _grdMarket.CellDoubleClick += _grdMarket_CellDoubleClick;
             _grdInventory.CellDoubleClick += _grdInventory_CellDoubleClick;
-            this.KeyDown += Form1_KeyDown;
+            this.KeyDown += Form1_KeyDown;            
             alertStatus("Press [Space Bar] to change city.  Buy low, sell high, leverage");
+        }
+
+        private void setRowNumbersOnMarket()
+        {
+
+            foreach (DataGridViewRow row in _grdMarket.Rows)
+            {
+                row.HeaderCell.Value = String.Format("{0}", row.Index + 1);                     
+            }
+            _grdMarket.RowHeadersWidth = 50;
+        
         }
 
         DateTime _lastSpacePressed = DateTime.Now.AddHours(-1);
@@ -60,9 +71,30 @@ namespace GumWars
             if (e.KeyCode == Keys.W)
                 doWithdrawal();
             if(e.KeyCode == Keys.S && _game.Player.OwnedGums.Count > 0)
-            {
-                showSellForm(_game.Player.OwnedGums[0]);
-            }
+                autoSell(_game.Player.OwnedGums[0]);
+            if (e.KeyCode == Keys.L)
+                loanSharkInteraction();
+            if (e.KeyCode == Keys.C)
+                promptAddCapacity();
+            if(e.KeyCode == Keys.D1)            
+                doubleClickMarketRow(0);
+            if (e.KeyCode == Keys.D2)
+                doubleClickMarketRow(1);
+            if (e.KeyCode == Keys.D3)
+                doubleClickMarketRow(2);
+            if (e.KeyCode == Keys.D4)
+                doubleClickMarketRow(3);
+            if (e.KeyCode == Keys.D5)
+                doubleClickMarketRow(4);
+            if (e.KeyCode == Keys.D6)
+                doubleClickMarketRow(5);
+        }
+
+        private void autoSell(OwnedGum gum)
+        {
+            MarketGum mGum = _game.CurrentCity.FindGum(gum);
+            _game.Player.SellGum(mGum, gum.Quantity);
+            outputGameState();
         }
 
 
@@ -95,6 +127,11 @@ namespace GumWars
 
         private void _grdMarket_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            doubleClickMarketRow(e.RowIndex);
+        }
+
+        private void doubleClickMarketRow(int rowNumber)
+        {
             if (_game.DaysLeft == 0)
             {
                 MessageBox.Show("You cannot buy when there are 0 days left");
@@ -103,7 +140,7 @@ namespace GumWars
 
             foreach (DataGridViewRow row in _grdMarket.Rows)
             {
-                if (row.Index != e.RowIndex)
+                if (row.Index != rowNumber)
                     continue;
                 MarketGum gum = row.DataBoundItem as MarketGum;
                 if (gum != null)
@@ -161,11 +198,15 @@ namespace GumWars
             _lblBank.Text = "$" + _game.Player.Bank.ToString("N0");
             _lblLoan.Text = "$" + _game.Player.Loan.ToString("N0");
 
-            int depositDisplay = (int)( _game.Player.Money / 4.0);
+            int depositDisplay = (int)( _game.Player.Money / 3.0);
             int withdrawDisplay = (int)(_game.Player.Bank / 2.0);
 
             _txtDepositAmount.Text = depositDisplay.ToString();
             _txtWithdrawAmount.Text = withdrawDisplay.ToString();
+
+            if (_game.Player.CarryingCapacity > Settings.MAX_CAPACITY)
+                _llAddCapacity.Enabled = false;
+            setRowNumbersOnMarket();
         }
 
         bool _alreadySaidGameOver = false;
@@ -205,6 +246,9 @@ namespace GumWars
                 {
                     AddHighScoreForm addScore = new AddHighScoreForm(_game.Player.TotalWealth);
                     addScore.ShowDialog(this);
+
+                    HighScores hsf = new HighScores();
+                    hsf.ShowDialog(this);
                 }
 
                 _cmbSelectedCity.Enabled = false;
@@ -228,6 +272,9 @@ namespace GumWars
 
         private void promptAddCapacity()
         {
+            if (_lastDayAttemptedToBuyCapacity == _game.DaysLeft)
+                return;
+
             _llAddCapacity.Enabled = false;
             _lastDayAttemptedToBuyCapacity = _game.DaysLeft;
             BuySellForm buyCapacity = new BuySellForm(null, _game.Player, Actions.BuyCapacity);
@@ -280,6 +327,11 @@ namespace GumWars
 
 
         private void _llLoanShark_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            loanSharkInteraction();
+        }
+
+        private void loanSharkInteraction()
         {
             if (_game.Player.Loan > 0 && _game.Player.Money > _game.Player.Loan)
             {

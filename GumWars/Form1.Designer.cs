@@ -71,7 +71,7 @@
             this._grpMarket.Controls.Add(this._grdMarket);
             this._grpMarket.Location = new System.Drawing.Point(396, 97);
             this._grpMarket.Name = "_grpMarket";
-            this._grpMarket.Size = new System.Drawing.Size(358, 337);
+            this._grpMarket.Size = new System.Drawing.Size(388, 337);
             this._grpMarket.TabIndex = 0;
             this._grpMarket.TabStop = false;
             this._grpMarket.Text = "Current Market";
@@ -83,7 +83,7 @@
             this._grdMarket.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this._grdMarket.Location = new System.Drawing.Point(6, 19);
             this._grdMarket.Name = "_grdMarket";
-            this._grdMarket.Size = new System.Drawing.Size(336, 275);
+            this._grdMarket.Size = new System.Drawing.Size(376, 275);
             this._grdMarket.TabIndex = 3;
             // 
             // _grpYou
@@ -144,10 +144,10 @@
             this._llLoanShark.AutoSize = true;
             this._llLoanShark.Location = new System.Drawing.Point(271, 155);
             this._llLoanShark.Name = "_llLoanShark";
-            this._llLoanShark.Size = new System.Drawing.Size(62, 13);
+            this._llLoanShark.Size = new System.Drawing.Size(68, 13);
             this._llLoanShark.TabIndex = 17;
             this._llLoanShark.TabStop = true;
-            this._llLoanShark.Text = "Loan Shark";
+            this._llLoanShark.Text = "[L]oan Shark";
             this._llLoanShark.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llLoanShark_LinkClicked);
             // 
             // _lblLoan
@@ -213,10 +213,10 @@
             this._llAddCapacity.AutoSize = true;
             this._llAddCapacity.Location = new System.Drawing.Point(271, 73);
             this._llAddCapacity.Name = "_llAddCapacity";
-            this._llAddCapacity.Size = new System.Drawing.Size(69, 13);
+            this._llAddCapacity.Size = new System.Drawing.Size(75, 13);
             this._llAddCapacity.TabIndex = 9;
             this._llAddCapacity.TabStop = true;
-            this._llAddCapacity.Text = "Buy Capacity";
+            this._llAddCapacity.Text = "Buy [C]apacity";
             this._llAddCapacity.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llAddCapacity_LinkClicked);
             // 
             // _lblRemainingCapacity
@@ -309,7 +309,7 @@
             this._lblStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 437);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(759, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(796, 22);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -358,7 +358,7 @@
             this.panel1.Controls.Add(this._lblGameStatus);
             this.panel1.Location = new System.Drawing.Point(12, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(742, 42);
+            this.panel1.Size = new System.Drawing.Size(772, 42);
             this.panel1.TabIndex = 13;
             // 
             // label8
@@ -366,15 +366,15 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(7, 307);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.Size = new System.Drawing.Size(81, 13);
             this.label8.TabIndex = 20;
-            this.label8.Text = "[S] To Sell";
+            this.label8.Text = "[S] To Auto-Sell";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 459);
+            this.ClientSize = new System.Drawing.Size(796, 459);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this._llNewGame);
             this.Controls.Add(this._llHighScores);
