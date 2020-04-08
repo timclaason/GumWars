@@ -97,9 +97,9 @@ namespace GumWars.Core
             return GameResult.Success;
         }
 
-        private GameResult buyGum(MarketGum gum, int quantity, int price)
+        private GameResult buyGum(MarketGum gum, int quantity, int transactionCost)
         {
-            if (price > this.Money)
+            if (transactionCost > this.Money)
                 return GameResult.NotEnoughMoney;
             if (quantity > this.RemainingCapacity)
                 return GameResult.NotEnoughCapacity;
@@ -112,10 +112,10 @@ namespace GumWars.Core
 
             if (this.OwnsGum(gum) == false)
             {
-                if (price == 0)
-                    ownedGum.AveragePrice = 0;
+                if (transactionCost == 0)
+                    ownedGum.TotalPaid = 0;
                 else
-                    ownedGum.AveragePrice = gum.CurrentPrice;
+                    ownedGum.TotalPaid = transactionCost;
                 this.OwnedGums.Add(ownedGum);
             }
             else
@@ -125,15 +125,15 @@ namespace GumWars.Core
                     if (g.Name == gum.Name)
                     {
                         int totalCostSoFar = g.Quantity * g.AveragePrice;
-                        int totalCostForThisTransaction = price;
+                        int totalCostForThisTransaction = transactionCost;
                         double newAverage = (totalCostSoFar + totalCostForThisTransaction) / (double)(g.Quantity + quantity);
                         int averagePrice = (int)Math.Ceiling(newAverage);
                         g.Quantity += quantity;
-                        g.AveragePrice = averagePrice;
+                        g.TotalPaid += (transactionCost);                        
                     }
                 }
             }
-            this.Money -= price;
+            this.Money -= transactionCost;
             return GameResult.Success;
         }
 

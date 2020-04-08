@@ -31,6 +31,16 @@
             this._grpMarket = new System.Windows.Forms.GroupBox();
             this._grdMarket = new System.Windows.Forms.DataGridView();
             this._grpYou = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this._txtWithdrawAmount = new System.Windows.Forms.TextBox();
+            this._txtDepositAmount = new System.Windows.Forms.TextBox();
+            this._llLoanShark = new System.Windows.Forms.LinkLabel();
+            this._lblLoan = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this._llBankWithdraw = new System.Windows.Forms.LinkLabel();
+            this._llBankDeposit = new System.Windows.Forms.LinkLabel();
+            this._lblBank = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this._llAddCapacity = new System.Windows.Forms.LinkLabel();
             this._lblRemainingCapacity = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,18 +55,9 @@
             this._lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this._llHighScores = new System.Windows.Forms.LinkLabel();
             this._llNewGame = new System.Windows.Forms.LinkLabel();
-            this._lblBank = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this._llBankDeposit = new System.Windows.Forms.LinkLabel();
             this._lblGameStatus = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this._llBankWithdraw = new System.Windows.Forms.LinkLabel();
-            this.label7 = new System.Windows.Forms.Label();
-            this._lblLoan = new System.Windows.Forms.Label();
-            this._llLoanShark = new System.Windows.Forms.LinkLabel();
-            this._txtDepositAmount = new System.Windows.Forms.TextBox();
-            this._txtWithdrawAmount = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this._grpMarket.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._grdMarket)).BeginInit();
             this._grpYou.SuspendLayout();
@@ -70,7 +71,7 @@
             this._grpMarket.Controls.Add(this._grdMarket);
             this._grpMarket.Location = new System.Drawing.Point(396, 97);
             this._grpMarket.Name = "_grpMarket";
-            this._grpMarket.Size = new System.Drawing.Size(358, 305);
+            this._grpMarket.Size = new System.Drawing.Size(358, 337);
             this._grpMarket.TabIndex = 0;
             this._grpMarket.TabStop = false;
             this._grpMarket.Text = "Current Market";
@@ -87,6 +88,7 @@
             // 
             // _grpYou
             // 
+            this._grpYou.Controls.Add(this.label8);
             this._grpYou.Controls.Add(this.label2);
             this._grpYou.Controls.Add(this._txtWithdrawAmount);
             this._grpYou.Controls.Add(this._txtDepositAmount);
@@ -107,10 +109,104 @@
             this._grpYou.Controls.Add(this.label1);
             this._grpYou.Location = new System.Drawing.Point(11, 97);
             this._grpYou.Name = "_grpYou";
-            this._grpYou.Size = new System.Drawing.Size(351, 305);
+            this._grpYou.Size = new System.Drawing.Size(351, 337);
             this._grpYou.TabIndex = 1;
             this._grpYou.TabStop = false;
             this._grpYou.Text = "You";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(271, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "[Space Bar]";
+            // 
+            // _txtWithdrawAmount
+            // 
+            this._txtWithdrawAmount.BackColor = System.Drawing.Color.Yellow;
+            this._txtWithdrawAmount.Location = new System.Drawing.Point(215, 125);
+            this._txtWithdrawAmount.Name = "_txtWithdrawAmount";
+            this._txtWithdrawAmount.Size = new System.Drawing.Size(50, 20);
+            this._txtWithdrawAmount.TabIndex = 18;
+            // 
+            // _txtDepositAmount
+            // 
+            this._txtDepositAmount.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this._txtDepositAmount.Location = new System.Drawing.Point(215, 97);
+            this._txtDepositAmount.Name = "_txtDepositAmount";
+            this._txtDepositAmount.Size = new System.Drawing.Size(50, 20);
+            this._txtDepositAmount.TabIndex = 14;
+            // 
+            // _llLoanShark
+            // 
+            this._llLoanShark.AutoSize = true;
+            this._llLoanShark.Location = new System.Drawing.Point(271, 155);
+            this._llLoanShark.Name = "_llLoanShark";
+            this._llLoanShark.Size = new System.Drawing.Size(62, 13);
+            this._llLoanShark.TabIndex = 17;
+            this._llLoanShark.TabStop = true;
+            this._llLoanShark.Text = "Loan Shark";
+            this._llLoanShark.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llLoanShark_LinkClicked);
+            // 
+            // _lblLoan
+            // 
+            this._lblLoan.AutoSize = true;
+            this._lblLoan.Location = new System.Drawing.Point(135, 152);
+            this._lblLoan.Name = "_lblLoan";
+            this._lblLoan.Size = new System.Drawing.Size(13, 13);
+            this._lblLoan.TabIndex = 16;
+            this._lblLoan.Text = "_";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 152);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Loan";
+            // 
+            // _llBankWithdraw
+            // 
+            this._llBankWithdraw.AutoSize = true;
+            this._llBankWithdraw.Location = new System.Drawing.Point(271, 132);
+            this._llBankWithdraw.Name = "_llBankWithdraw";
+            this._llBankWithdraw.Size = new System.Drawing.Size(58, 13);
+            this._llBankWithdraw.TabIndex = 14;
+            this._llBankWithdraw.TabStop = true;
+            this._llBankWithdraw.Text = "[W]ithdraw";
+            this._llBankWithdraw.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llBankWithdraw_LinkClicked);
+            // 
+            // _llBankDeposit
+            // 
+            this._llBankDeposit.AutoSize = true;
+            this._llBankDeposit.Location = new System.Drawing.Point(271, 100);
+            this._llBankDeposit.Name = "_llBankDeposit";
+            this._llBankDeposit.Size = new System.Drawing.Size(49, 13);
+            this._llBankDeposit.TabIndex = 12;
+            this._llBankDeposit.TabStop = true;
+            this._llBankDeposit.Text = "[D]eposit";
+            this._llBankDeposit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llBank_LinkClicked);
+            // 
+            // _lblBank
+            // 
+            this._lblBank.AutoSize = true;
+            this._lblBank.Location = new System.Drawing.Point(135, 100);
+            this._lblBank.Name = "_lblBank";
+            this._lblBank.Size = new System.Drawing.Size(13, 13);
+            this._lblBank.TabIndex = 11;
+            this._lblBank.Text = "_";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Bank";
             // 
             // _llAddCapacity
             // 
@@ -211,7 +307,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 408);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 437);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(759, 22);
             this.statusStrip1.TabIndex = 9;
@@ -245,35 +341,6 @@
             this._llNewGame.Text = "New Game";
             this._llNewGame.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llNewGame_LinkClicked);
             // 
-            // _lblBank
-            // 
-            this._lblBank.AutoSize = true;
-            this._lblBank.Location = new System.Drawing.Point(135, 100);
-            this._lblBank.Name = "_lblBank";
-            this._lblBank.Size = new System.Drawing.Size(13, 13);
-            this._lblBank.TabIndex = 11;
-            this._lblBank.Text = "_";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Bank";
-            // 
-            // _llBankDeposit
-            // 
-            this._llBankDeposit.AutoSize = true;
-            this._llBankDeposit.Location = new System.Drawing.Point(271, 100);
-            this._llBankDeposit.Name = "_llBankDeposit";
-            this._llBankDeposit.Size = new System.Drawing.Size(43, 13);
-            this._llBankDeposit.TabIndex = 12;
-            this._llBankDeposit.TabStop = true;
-            this._llBankDeposit.Text = "&Deposit";
-            this._llBankDeposit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llBank_LinkClicked);
-            // 
             // _lblGameStatus
             // 
             this._lblGameStatus.AutoSize = true;
@@ -294,76 +361,20 @@
             this.panel1.Size = new System.Drawing.Size(742, 42);
             this.panel1.TabIndex = 13;
             // 
-            // _llBankWithdraw
+            // label8
             // 
-            this._llBankWithdraw.AutoSize = true;
-            this._llBankWithdraw.Location = new System.Drawing.Point(271, 132);
-            this._llBankWithdraw.Name = "_llBankWithdraw";
-            this._llBankWithdraw.Size = new System.Drawing.Size(52, 13);
-            this._llBankWithdraw.TabIndex = 14;
-            this._llBankWithdraw.TabStop = true;
-            this._llBankWithdraw.Text = "Withdraw";
-            this._llBankWithdraw.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llBankWithdraw_LinkClicked);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 152);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Loan";
-            // 
-            // _lblLoan
-            // 
-            this._lblLoan.AutoSize = true;
-            this._lblLoan.Location = new System.Drawing.Point(135, 152);
-            this._lblLoan.Name = "_lblLoan";
-            this._lblLoan.Size = new System.Drawing.Size(13, 13);
-            this._lblLoan.TabIndex = 16;
-            this._lblLoan.Text = "_";
-            // 
-            // _llLoanShark
-            // 
-            this._llLoanShark.AutoSize = true;
-            this._llLoanShark.Location = new System.Drawing.Point(271, 155);
-            this._llLoanShark.Name = "_llLoanShark";
-            this._llLoanShark.Size = new System.Drawing.Size(62, 13);
-            this._llLoanShark.TabIndex = 17;
-            this._llLoanShark.TabStop = true;
-            this._llLoanShark.Text = "Loan Shark";
-            this._llLoanShark.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._llLoanShark_LinkClicked);
-            // 
-            // _txtDepositAmount
-            // 
-            this._txtDepositAmount.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this._txtDepositAmount.Location = new System.Drawing.Point(215, 97);
-            this._txtDepositAmount.Name = "_txtDepositAmount";
-            this._txtDepositAmount.Size = new System.Drawing.Size(50, 20);
-            this._txtDepositAmount.TabIndex = 14;
-            // 
-            // _txtWithdrawAmount
-            // 
-            this._txtWithdrawAmount.BackColor = System.Drawing.Color.Yellow;
-            this._txtWithdrawAmount.Location = new System.Drawing.Point(215, 125);
-            this._txtWithdrawAmount.Name = "_txtWithdrawAmount";
-            this._txtWithdrawAmount.Size = new System.Drawing.Size(50, 20);
-            this._txtWithdrawAmount.TabIndex = 18;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(271, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "[Space Bar]";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 307);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "[S] To Sell";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 430);
+            this.ClientSize = new System.Drawing.Size(759, 459);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this._llNewGame);
             this.Controls.Add(this._llHighScores);
@@ -422,6 +433,7 @@
         private System.Windows.Forms.TextBox _txtWithdrawAmount;
         private System.Windows.Forms.TextBox _txtDepositAmount;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label8;
     }
 }
 

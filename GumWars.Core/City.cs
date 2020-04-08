@@ -9,8 +9,11 @@ namespace GumWars.Core
 {
     public class City
     {
-        public City(string cityName)
+        Player _player;
+
+        public City(string cityName, Player player)
         {
+            _player = player;
             this.CityMessage = String.Empty;
             this.Name = cityName;
             this.initialize();
@@ -108,7 +111,7 @@ namespace GumWars.Core
 
             for (int i = 0; i < Settings.GUMS.Length; i++)
             {
-                MarketGum gum = new MarketGum(Settings.GUMS[i], (i + 2) * 3, (i + 2) * 6);
+                MarketGum gum = new MarketGum(Settings.GUMS[i], (i + 2) * 3, (i + 2) * 7, _player);
                 this.Gums.Add(gum);
             }
         }

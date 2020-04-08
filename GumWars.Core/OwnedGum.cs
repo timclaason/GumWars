@@ -15,10 +15,20 @@ namespace GumWars.Core
             set;
         }
 
-        public int AveragePrice
+        public int TotalPaid
         {
             get;
             set;
+        }
+
+        public int AveragePrice
+        {
+            get
+            {
+                double returnVal = this.TotalPaid / (double)Quantity;
+                return (int)returnVal;
+            }
+            
         }
     }
 }

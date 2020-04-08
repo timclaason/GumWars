@@ -99,6 +99,9 @@ namespace GumWars
             int quantity = 0;
             int.TryParse(_txtQuantity.Text, out quantity);
 
+            if (quantity == 0)
+                return;
+
             GameResult result = GameResult.NotEnoughCapacity;
 
             if (_action == Actions.BuyCapacity)

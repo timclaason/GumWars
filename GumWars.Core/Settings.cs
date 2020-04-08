@@ -8,7 +8,7 @@ namespace GumWars.Core
 {
     public class Settings
     {
-        public static int DEFAULT_CARRYING_CAPACITY = 600;
+        public static int DEFAULT_CARRYING_CAPACITY = 700;
 
         public static int DEFAULT_MONEY = 1500;
 
@@ -38,7 +38,7 @@ namespace GumWars.Core
 
         public static string[] CITIES = { "Altoona", "Augusta", "Eau Claire", "Elk Mound", "Fall Creek", "Osseo" };
 
-        public static string[] GUMS =   { "Wrigleys", "Bazooka Joe", "Beemans", "Eclipse", "Big Red", "Doublemint", "Orbit", "Juicy Fruit", "WinterFresh" };
+        public static string[] GUMS =   { "Wrigleys", "Bazooka Joe",  "Eclipse",  "Orbit", "Juicy Fruit", "WinterFresh" };
 
     }
 }

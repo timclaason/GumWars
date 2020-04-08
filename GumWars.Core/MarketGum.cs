@@ -10,9 +10,12 @@ namespace GumWars.Core
     {
         private int _price;
 
-        public MarketGum(string name, int minPrice, int maxPrice)
+        private Player _player;
+
+        public MarketGum(string name, int minPrice, int maxPrice, Player player)
         {
             this.Name = name;
+            _player = player;
             _price = MyRandom.Random(minPrice, maxPrice);
         }
 
@@ -25,6 +28,15 @@ namespace GumWars.Core
             set
             {
                 _price = value;
+            }
+        }
+
+        public int CanAfford
+        {
+            get
+            {
+                double amt = _player.Money / this.CurrentPrice;
+                return (int)Math.Floor(amt);
             }
         }
     }

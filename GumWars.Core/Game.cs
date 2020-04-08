@@ -54,12 +54,12 @@ namespace GumWars.Core
         {
             _cities = new List<City>();
 
-
+            _player = new Player();
             foreach (String city in Settings.CITIES)
-                _cities.Add(new City(city));
+                _cities.Add(new City(city, _player));
 
             _currentCity = _cities[0];
-            _player = new Player();
+            
         }
 
         public void Move(City city)

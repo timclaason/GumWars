@@ -43,7 +43,26 @@ namespace GumWars
                 _lastSpacePressed = DateTime.Now;
             }
             if (e.KeyCode == Keys.C)
-                promptAddCapacity();            
+                promptAddCapacity();           
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(_txtDepositAmount.Focused)
+                {
+                    doDeposit();
+                }
+                else if(_txtWithdrawAmount.Focused)
+                {
+                    doWithdrawal();
+                }
+            }
+            if (e.KeyCode == Keys.D)
+                doDeposit();
+            if (e.KeyCode == Keys.W)
+                doWithdrawal();
+            if(e.KeyCode == Keys.S && _game.Player.OwnedGums.Count > 0)
+            {
+                showSellForm(_game.Player.OwnedGums[0]);
+            }
         }
 
 
@@ -55,17 +74,22 @@ namespace GumWars
                 if (row.Index != e.RowIndex)
                     continue;
                 OwnedGum gum = row.DataBoundItem as OwnedGum;
-                MarketGum marketGum = _game.CurrentCity.FindGum(gum);
+                showSellForm(gum);
+            }
+        }
 
-                if (marketGum == null)
-                    return;
+        private void showSellForm(OwnedGum gum)
+        {
+            MarketGum marketGum = _game.CurrentCity.FindGum(gum);
 
-                if (gum != null)
-                {
-                    BuySellForm buySellForm = new BuySellForm(marketGum, _game.Player, Actions.Sell);
-                    buySellForm.ShowDialog(this);
-                    outputGameState();
-                }
+            if (marketGum == null)
+                return;
+
+            if (gum != null)
+            {
+                BuySellForm buySellForm = new BuySellForm(marketGum, _game.Player, Actions.Sell);
+                buySellForm.ShowDialog(this);
+                outputGameState();
             }
         }
 
@@ -137,8 +161,8 @@ namespace GumWars
             _lblBank.Text = "$" + _game.Player.Bank.ToString("N0");
             _lblLoan.Text = "$" + _game.Player.Loan.ToString("N0");
 
-            int depositDisplay = (int)( _game.Player.Money / 10.0);
-            int withdrawDisplay = _game.Player.Bank;
+            int depositDisplay = (int)( _game.Player.Money / 4.0);
+            int withdrawDisplay = (int)(_game.Player.Bank / 2.0);
 
             _txtDepositAmount.Text = depositDisplay.ToString();
             _txtWithdrawAmount.Text = withdrawDisplay.ToString();
@@ -224,6 +248,11 @@ namespace GumWars
 
         private void _llBank_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            doDeposit();            
+        }
+
+        private void doDeposit()
+        {
             int amount = 0;
             int.TryParse(_txtDepositAmount.Text, out amount);
 
@@ -234,6 +263,11 @@ namespace GumWars
         }
 
         private void _llBankWithdraw_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            doWithdrawal();
+        }
+
+        private void doWithdrawal()
         {
             int amount = 0;
             int.TryParse(_txtWithdrawAmount.Text, out amount);
@@ -247,8 +281,15 @@ namespace GumWars
 
         private void _llLoanShark_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoanSharkForm loanShark = new LoanSharkForm(_game, _game.Player);
-            loanShark.ShowDialog(this);
+            if (_game.Player.Loan > 0 && _game.Player.Money > _game.Player.Loan)
+            {
+                _game.Player.Payback(_game.Player.Loan);
+            }
+            else
+            {
+                LoanSharkForm loanShark = new LoanSharkForm(_game, _game.Player);
+                loanShark.ShowDialog(this);
+            }
             outputGameState();
         }
     }
